@@ -7,7 +7,7 @@ LIBRARY_FILE = -lpthread -lz -lsrt
 BIN_PATH = ./bin
 
 DEBUG = -g
-CFLAGS += $(DEBUG) -w -fcompare-debug-second -Wno-nullptr-compare 
+CFLAGS += $(DEBUG) -w -fcompare-debug-second -Wno-nullptr-compare -Wno-null-compare 
 
 LOG_PATH = ./logs
 
