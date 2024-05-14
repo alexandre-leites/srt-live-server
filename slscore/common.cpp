@@ -32,6 +32,7 @@
 #include <arpa/inet.h>
 
 #include <cstdarg>
+#include <ctime>
 #include <errno.h>
 #include <fcntl.h>
 #include <netdb.h>
