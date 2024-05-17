@@ -169,7 +169,9 @@ json CSLSManager::generate_json_for_all_publishers(int clear) {
         std::vector<std::string> publisherNames = publisher_map->get_publisher_names();
         for(std::string name : publisherNames) {
             CSLSRole *role = publisher_map->get_publisher(name);
-            ret["publishers"][name] = create_json_stats_for_publisher(role, clear);
+            if (role != NULL && role->get_bitrate() > 0) {
+                ret["publishers"][name] = create_json_stats_for_publisher(role, clear);
+            }
         }
     }
     return ret;
@@ -182,7 +184,7 @@ json CSLSManager::generate_json_for_publisher(std::string publisherName, int cle
     for (int i = 0; i < m_server_count; i ++) {
         CSLSMapPublisher *publisher_map = &m_map_publisher[i];
         CSLSRole *role = publisher_map->get_publisher(publisherName);
-        if (role != NULL) {
+        if (role != NULL && role->get_bitrate() > 0) {
             ret = create_json_stats_for_publisher(role, clear);
             ret["status"] = "ok";
             break;
